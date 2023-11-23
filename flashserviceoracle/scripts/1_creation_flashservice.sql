@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 10g                           */
-/* Created on:     11/22/2023 9:34:38 PM                        */
+/* Created on:     11/22/2023 6:34:38 PM                        */
 /*==============================================================*/
 
 
@@ -133,7 +133,7 @@ create table IDENTIFICATION_TYPE  (
 create table INVOICE  (
    ID_INVOICE           NUMBER                          not null,
    ID_GUIA              NUMBER,
-   ID_USER              NUMBER,
+   ID_USERS              NUMBER,
    constraint PK_INVOICE primary key (ID_INVOICE)
 );
 
@@ -172,7 +172,7 @@ create table PERSON_COLABORATOR  (
 create table PERSON_IDENTIFICATION  (
    ID_PERSON_IDENTIFICATION NUMBER                          not null,
    ID_IDENTIFICATION_TYPE NUMBER,
-   "NUMBER"             NUMBER,
+   NUMBER_ID             NUMBER,
    FRONT_IMG            VARCHAR(255),
    REAR_IMG             VARCHAR(255),
    constraint PK_PERSON_IDENTIFICATION primary key (ID_PERSON_IDENTIFICATION)
@@ -184,7 +184,7 @@ create table PERSON_IDENTIFICATION  (
 create table PHONE_NUMBER  (
    ID_PHONE_NUMBER      NUMBER                          not null,
    ID_PERSON_CLIENT     NUMBER,
-   "NUMBER"             NUMBER,
+   NUMBER_ID            NUMBER,
    constraint PK_PHONE_NUMBER primary key (ID_PHONE_NUMBER)
 );
 
@@ -270,26 +270,26 @@ create table TYPE_PRODUCT  (
 );
 
 /*==============================================================*/
-/* Table: "USER"                                                */
+/* Table: "USERS"                                                */
 /*==============================================================*/
-create table "USER"  (
-   ID_USER              NUMBER                          not null,
+create table USERS  (
+   ID_USERS              NUMBER                          not null,
    ID_PERSON_COLABORATOR NUMBER,
    ID_PERSON_CLIENT     NUMBER,
-   ID_USER_TYPE         NUMBER,
+   ID_USERS_TYPE         NUMBER,
    ID_ADMINISTRATOR     NUMBER,
-   USERNAME             VARCHAR(45),
+   USERSNAME             VARCHAR(45),
    PASSWORD             VARCHAR(45),
-   constraint PK_USER primary key (ID_USER)
+   constraint PK_USERS primary key (ID_USERS)
 );
 
 /*==============================================================*/
-/* Table: USER_TYPE                                             */
+/* Table: USERS_TYPE                                             */
 /*==============================================================*/
-create table USER_TYPE  (
-   ID_USER_TYPE         NUMBER                          not null,
-   TYPE_USER            VARCHAR(45),
-   constraint PK_USER_TYPE primary key (ID_USER_TYPE)
+create table USERS_TYPE  (
+   ID_USERS_TYPE         NUMBER                          not null,
+   TYPE_USERS            VARCHAR(45),
+   constraint PK_USERS_TYPE primary key (ID_USERS_TYPE)
 );
 
 alter table ADDRESSE
@@ -327,20 +327,20 @@ alter table GUIA
       references PRODUCT (ID_PRODUCT);
 
 alter table GUIA
-   add constraint FK_GUIA_GUIA_RECI_USER foreign key (ID_RECEIVER)
-      references "USER" (ID_USER);
+   add constraint FK_GUIA_GUIA_RECI_USERS foreign key (ID_RECEIVER)
+      references USERS (ID_USERS);
 
 alter table GUIA
-   add constraint FK_GUIA_GUIA_SEND_USER foreign key (ID_SENDER)
-      references "USER" (ID_USER);
+   add constraint FK_GUIA_GUIA_SEND_USERS foreign key (ID_SENDER)
+      references USERS (ID_USERS);
 
 alter table INVOICE
    add constraint FK_INVOICE_INVOICE_G_GUIA foreign key (ID_GUIA)
       references GUIA (ID_GUIA);
 
 alter table INVOICE
-   add constraint FK_INVOICE_INVOICE_U_USER foreign key (ID_USER)
-      references "USER" (ID_USER);
+   add constraint FK_INVOICE_INVOICE_U_USERS foreign key (ID_USERS)
+      references USERS (ID_USERS);
 
 alter table PERSON_CLIENT
    add constraint FK_PERSON_C_PERSON_CL_PERSON_I foreign key (ID_PERSON_IDENTIFICATION)
@@ -382,19 +382,19 @@ alter table PRODUCT
    add constraint FK_PRODUCT_PRODUCT_T_TYPE_PRO foreign key (ID_TYPE_PRODUCT)
       references TYPE_PRODUCT (ID_TYPE_PRODUCT);
 
-alter table "USER"
-   add constraint FK_USER_USER_ADMI_ADMINIST foreign key (ID_ADMINISTRATOR)
+alter table USERS
+   add constraint FK_USERS_USERS_ADMI_ADMINIST foreign key (ID_ADMINISTRATOR)
       references ADMINISTRATOR (ID_ADMINISTRATOR);
 
-alter table "USER"
-   add constraint FK_USER_USER_PERS_PER_CLI foreign key (ID_PERSON_CLIENT)
+alter table USERS
+   add constraint FK_USERS_USERS_PERS_PER_CLI foreign key (ID_PERSON_CLIENT)
       references PERSON_CLIENT (ID_PERSON_CLIENT);
 
-alter table "USER"
-   add constraint FK_USER_USER_PERS_PER_COLA foreign key (ID_PERSON_COLABORATOR)
+alter table USERS
+   add constraint FK_USERS_USERS_PERS_PER_COLA foreign key (ID_PERSON_COLABORATOR)
       references PERSON_COLABORATOR (ID_PERSON_COLABORATOR);
 
-alter table "USER"
-   add constraint FK_USER_USER_USER_USER_TYP foreign key (ID_USER_TYPE)
-      references USER_TYPE (ID_USER_TYPE);
+alter table USERS
+   add constraint FK_USERS_USERS_USERS_USERS_TYP foreign key (ID_USERS_TYPE)
+      references USERS_TYPE (ID_USERS_TYPE);
 

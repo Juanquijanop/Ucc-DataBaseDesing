@@ -1,0 +1,1 @@
+{"resources":{"scripts/1_creation_flashservice.sql":{"default-datasource":"oracle_thin-18bfa4b3fe6-1cfd557611fa3b43","default-schema":"FLASHSERVICE"},"scripts/2_data_flashservice.sql":{"default-datasource":"oracle_thin-18bfa4b3fe6-1cfd557611fa3b43","default-schema":"FLASHSERVICE"}}}

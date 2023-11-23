@@ -1,0 +1,1 @@
+{"resources":{"scripts/1_creation_flashservice.sql":{"default-datasource":"postgres-jdbc-18bfa4b5b32-289daee7e52d82c1","default-catalog":"flashservice","default-schema":"public"},"scripts/2_data_flashservice.sql":{"default-datasource":"postgres-jdbc-18bfa4b5b32-289daee7e52d82c1","default-catalog":"flashservice","default-schema":"public"}}}
